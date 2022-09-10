@@ -1,0 +1,22 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{DA6A6575-47C6-2308-3B37-17B6DB94A1DC}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "ExodusSpace",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	]
+}
