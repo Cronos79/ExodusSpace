@@ -6,10 +6,16 @@
 #include "GameFramework/Character.h"
 #include "ESCharacter.generated.h"
 
+class UCroAttributeComponent;
+
 UCLASS()
 class EXODUSSPACE_API AESCharacter : public ACharacter
 {
 	GENERATED_BODY()
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UCroAttributeComponent* AttributeComp;
 
 public:
 	// Sets default values for this character's properties

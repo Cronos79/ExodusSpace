@@ -7,13 +7,18 @@
 
 AESPlayerCharacter::AESPlayerCharacter()
 {
+	// Components
 	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	SpringArmComp->SetupAttachment(RootComponent);
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Main Camera"));
 	CameraComp->SetupAttachment(SpringArmComp, USpringArmComponent::SocketName);
 	
+	// Movement
+	bUseControllerRotationYaw = true;
+	SpringArmComp->bUsePawnControlRotation = true;
 }
 
+/********************************************************************** Movement **********************************************************************/
 void AESPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -26,7 +31,10 @@ void AESPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* Player
 
 void AESPlayerCharacter::MoveForward(float Value)
 {
-	AddMovementInput(GetActorForwardVector(), Value);
+	FRotator ControlRot = GetControlRotation();
+	ControlRot.Pitch = 0.0f;
+	ControlRot.Roll = 0.0f;
+	AddMovementInput(ControlRot.Vector(), Value);
 }
 
 void AESPlayerCharacter::MoveRight(float Value)
@@ -43,3 +51,4 @@ void AESPlayerCharacter::LookUp(float Value)
 {
 	AddControllerPitchInput(-Value);
 }
+/********************************************************************* End Movement ********************************************************************/

@@ -9,15 +9,18 @@
 class USpringArmComponent;
 class UCameraComponent;
 
-/**
- * 
- */
+/// <summary>
+/// Player Character class
+/// </summary>
 UCLASS()
 class EXODUSSPACE_API AESPlayerCharacter : public AESCharacter
 {
 	GENERATED_BODY()
 
 protected:
+	/// <summary>
+	/// Components
+	/// </summary>
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	USpringArmComponent* SpringArmComp;
 	UPROPERTY(VisibleAnywhere, Category = "Components")
@@ -25,9 +28,11 @@ protected:
 
 public:
 	AESPlayerCharacter();
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	/// <summary>
+	/// Character Movement methods
+	/// </summary>
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	UFUNCTION()
 	void MoveForward(float Value);
 	UFUNCTION()
