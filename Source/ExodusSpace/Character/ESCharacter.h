@@ -7,6 +7,7 @@
 #include "ESCharacter.generated.h"
 
 class UCroAttributeComponent;
+class UCroActionComponent;
 
 UCLASS()
 class EXODUSSPACE_API AESCharacter : public ACharacter
@@ -16,6 +17,8 @@ class EXODUSSPACE_API AESCharacter : public ACharacter
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UCroAttributeComponent* AttributeComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UCroActionComponent* ActionComp;
 
 public:
 	// Sets default values for this character's properties

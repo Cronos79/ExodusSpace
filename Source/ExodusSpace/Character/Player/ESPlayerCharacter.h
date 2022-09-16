@@ -8,6 +8,7 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class UESInteractionComponent;
 
 /// <summary>
 /// Player Character class
@@ -25,9 +26,15 @@ protected:
 	USpringArmComponent* SpringArmComp;
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UCameraComponent* CameraComp;
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UESInteractionComponent* InteractionComp;
 
 public:
 	AESPlayerCharacter();
+
+	virtual FVector GetPawnViewLocation() const override;
+	UCameraComponent* GetMainCamera();
+	bool CameraLineTrace(float TraceDistance, FHitResult &Hit);
 
 	/// <summary>
 	/// Character Movement methods
@@ -41,4 +48,16 @@ public:
 	void Turn(float Value);
 	UFUNCTION()
 	void LookUp(float Value);
+
+	UFUNCTION()
+	void Interact();
+	/// <summary>
+	/// Character CroAction methods
+	/// </summary>
+	UFUNCTION()
+	void SprintStart();
+	UFUNCTION()
+	void SprintStop();
+	UFUNCTION()
+	void PrimaryAttack();
 };

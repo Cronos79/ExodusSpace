@@ -3,6 +3,7 @@
 
 #include "ESCharacter.h"
 #include <CroAttributeComponent.h>
+#include <CroActionComponent.h>
 
 // Sets default values
 AESCharacter::AESCharacter()
@@ -11,6 +12,7 @@ AESCharacter::AESCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AttributeComp = CreateDefaultSubobject<UCroAttributeComponent>(TEXT("Attribute Component"));
+	ActionComp = CreateDefaultSubobject<UCroActionComponent>(TEXT("Action Component"));
 }
 
 // Called when the game starts or when spawned
