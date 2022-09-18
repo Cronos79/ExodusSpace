@@ -34,7 +34,7 @@ public:
 
 	virtual FVector GetPawnViewLocation() const override;
 	UCameraComponent* GetMainCamera();
-	bool CameraLineTrace(float TraceDistance, FHitResult &Hit);
+	bool CameraLineTrace(float TraceDistance, FHitResult &Hit, ECollisionChannel TraceChannel = ECollisionChannel::ECC_Visibility, bool ShowDebug = false);
 
 	/// <summary>
 	/// Character Movement methods

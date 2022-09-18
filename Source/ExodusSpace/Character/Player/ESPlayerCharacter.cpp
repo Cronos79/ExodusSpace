@@ -32,7 +32,7 @@ UCameraComponent* AESPlayerCharacter::GetMainCamera()
 	return CameraComp;
 }
 
-bool AESPlayerCharacter::CameraLineTrace(float TraceDistance, FHitResult &OutHit)
+bool AESPlayerCharacter::CameraLineTrace(float TraceDistance, FHitResult &OutHit, ECollisionChannel TraceChannel, bool ShowDebug)
 {
 	FVector TraceStart = CameraComp->GetComponentLocation();;
 	FVector TraceEnd = TraceStart + (CameraComp->GetForwardVector() * TraceDistance);
@@ -40,11 +40,13 @@ bool AESPlayerCharacter::CameraLineTrace(float TraceDistance, FHitResult &OutHit
 	FCollisionQueryParams Params;
 	Params.AddIgnoredActor(this);
 	FHitResult Hit;
-	bool BlockingHit = GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECollisionChannel::ECC_Visibility, Params);
-
-	FColor LineColor = BlockingHit ? FColor::Green : FColor::Red;
-	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, LineColor, false, 2.0f, 0, 2.0f);
-
+	bool BlockingHit = GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannel, Params);
+		
+	if (ShowDebug)
+	{
+		FColor LineColor = BlockingHit ? FColor::Green : FColor::Red;
+		DrawDebugLine(GetWorld(), TraceStart, TraceEnd, LineColor, false, 2.0f, 0, 2.0f);
+	}
 	OutHit = Hit;
 	return BlockingHit;
 }
