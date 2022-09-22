@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "CroInventory",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "Matt Brock",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "CroInventory",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

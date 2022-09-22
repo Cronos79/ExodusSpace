@@ -10,7 +10,9 @@
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
 				"Engine",
-				"AIModule"
+				"AIModule",
+				"CroAction",
+				"UMG"
 			]
 		}
 	],
@@ -24,6 +26,10 @@
 		},
 		{
 			"Name": "OnlineSubsystemSteam",
+			"Enabled": true
+		},
+		{
+			"Name": "FunctionalTestingEditor",
 			"Enabled": true
 		}
 	],

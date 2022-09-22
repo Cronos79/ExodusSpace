@@ -6,6 +6,8 @@
 #include "../ESCharacter.h"
 #include "ESAICharacter.generated.h"
 
+
+
 /**
  * 
  */
@@ -14,4 +16,6 @@ class EXODUSSPACE_API AESAICharacter : public AESCharacter
 {
 	GENERATED_BODY()
 	
+public:
+	void PrimaryAttack();
 };
