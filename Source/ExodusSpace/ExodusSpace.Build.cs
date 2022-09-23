@@ -8,7 +8,7 @@ public class ExodusSpace : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;	
 		// Core and my plugins
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "CroAction", "CroInventory", "CroMultiplayer" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "CroAction", "CroInventory", "CroMultiplayer", "GameplayTags" });
         // AI
         PublicDependencyModuleNames.AddRange(new string[] { "AIModule", "GameplayTasks" });
         // UI
