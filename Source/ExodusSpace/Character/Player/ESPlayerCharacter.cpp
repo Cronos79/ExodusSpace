@@ -60,10 +60,19 @@ void AESPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* Player
 	PlayerInputComponent->BindAxis("MoveRight", this, &AESPlayerCharacter::MoveRight);
 	PlayerInputComponent->BindAxis("Turn", this, &AESPlayerCharacter::Turn);
 	PlayerInputComponent->BindAxis("LookUp", this, &AESPlayerCharacter::LookUp);
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AESPlayerCharacter::Interact);
+
+	// Actions
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AESPlayerCharacter::SprintStart);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AESPlayerCharacter::SprintStop);
 	PlayerInputComponent->BindAction("PrimaryAttack", IE_Pressed, this, &AESPlayerCharacter::PrimaryAttack);
-	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AESPlayerCharacter::Interact);
+	PlayerInputComponent->BindAction("SecondaryAttack", IE_Pressed, this, &AESPlayerCharacter::SecondaryAttack);
+
+	PlayerInputComponent->BindAction("SkillOne", IE_Pressed, this, &AESPlayerCharacter::SkillOne);
+	PlayerInputComponent->BindAction("SkillTwo", IE_Pressed, this, &AESPlayerCharacter::SkillTwo);
+	PlayerInputComponent->BindAction("SkillThree", IE_Pressed, this, &AESPlayerCharacter::SkillThree);
+	PlayerInputComponent->BindAction("SkillFour", IE_Pressed, this, &AESPlayerCharacter::SkillFour);
+
 }
 
 void AESPlayerCharacter::MoveForward(float Value)
@@ -107,7 +116,32 @@ void AESPlayerCharacter::SprintStop()
 
 void AESPlayerCharacter::PrimaryAttack()
 {
-	ActionComp->StartActionByName(this, "PrimaryAttack");
+	ActionComp->StartActionByName(this, PrimaryAttackName);
+}
+
+void AESPlayerCharacter::SecondaryAttack()
+{
+	ActionComp->StartActionByName(this, SecondaryAttackName);
+}
+
+void AESPlayerCharacter::SkillOne()
+{
+	ActionComp->StartActionByName(this, SkillOneName);
+}
+
+void AESPlayerCharacter::SkillTwo()
+{
+	ActionComp->StartActionByName(this, SkillTwoName);
+}
+
+void AESPlayerCharacter::SkillThree()
+{
+	ActionComp->StartActionByName(this, SkillThreeName);
+}
+
+void AESPlayerCharacter::SkillFour()
+{
+	ActionComp->StartActionByName(this, SkillFourName);
 }
 
 /********************************************************************** End Actions *********************************************************************/

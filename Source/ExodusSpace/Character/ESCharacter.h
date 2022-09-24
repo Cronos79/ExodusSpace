@@ -41,6 +41,20 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Attributes")
 	FOnCreditsChanged OnCreditsChanged;
 
+	// Actions
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	FName PrimaryAttackName{ "PrimaryAttack" };
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	FName SecondaryAttackName{ "SecondaryAttack" };
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	FName SkillOneName{ "SkillOne" };
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	FName SkillTwoName{ "SkillTwo" };
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	FName SkillThreeName{ "SkillThree" };
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	FName SkillFourName{ "SkillFour" };
+
 public:
 	// Sets default values for this character's properties
 	AESCharacter();

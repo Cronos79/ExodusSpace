@@ -60,4 +60,14 @@ public:
 	void SprintStop();
 	UFUNCTION()
 	void PrimaryAttack();
+	UFUNCTION()
+	void SecondaryAttack();
+	UFUNCTION()
+	void SkillOne();
+	UFUNCTION()
+	void SkillTwo();
+	UFUNCTION()
+	void SkillThree();
+	UFUNCTION()
+	void SkillFour();
 };
