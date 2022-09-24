@@ -80,3 +80,47 @@ void AESCharacter::UpdateHealthBar(float CurrentValue, float MaxValue)
 	}
 }
 
+void AESCharacter::GainCredits(int32 Value)
+{
+	Credits += Value;
+	OnCreditsChanged.Broadcast(Value);
+}
+
+bool AESCharacter::SpendCredits(int32 Value)
+{
+	if (Credits >= Value)
+	{
+		Credits -= Value;
+		OnCreditsChanged.Broadcast(Value);
+		return true;
+	}
+	return false;
+}
+
+bool AESCharacter::HasEnoughMana_Implementation(float Amount)
+{
+	if (AttributeComp)
+	{
+		return AttributeComp->HasEnoughMana(Amount);
+	}
+	return false;
+}
+
+float AESCharacter::GetCurrentMana_Implementation()
+{
+	if (AttributeComp)
+	{
+		return AttributeComp->GetMana();
+	}
+	return 0;
+}
+
+bool AESCharacter::UseMana_Implementation(float Amount)
+{
+	if (AttributeComp)
+	{
+		return AttributeComp->UseMana(Amount);
+	}
+	return false;
+}
+

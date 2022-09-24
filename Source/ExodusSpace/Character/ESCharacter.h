@@ -4,14 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include <Delegates/DelegateCombinations.h>
+#include <CroActionInterface.h>
 #include "ESCharacter.generated.h"
 
 class UCroAttributeComponent;
 class UCroActionComponent;
 class UWidgetComponent;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCreditsChanged, int32, NewCredits);
+
 UCLASS()
-class EXODUSSPACE_API AESCharacter : public ACharacter
+class EXODUSSPACE_API AESCharacter : public ACharacter, public ICroActionInterface
 {
 	GENERATED_BODY()
 
@@ -29,6 +33,13 @@ protected:
 	TSubclassOf<UUserWidget> HealthbarClass;
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UUserWidget> CombatTextClass;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Items")
+	int32 Credits{ 0 };
+
+public:
+	UPROPERTY(BlueprintAssignable, Category = "Attributes")
+	FOnCreditsChanged OnCreditsChanged;
 
 public:
 	// Sets default values for this character's properties
@@ -49,4 +60,13 @@ public:
 	void OnHealthChange(AActor* InstigatorActor, UCroAttributeComponent* OwningComp, float NewHealth, float MaxHealth, float ChangedAmount);
 	UFUNCTION()
 	void UpdateHealthBar(float CurrentValue, float MaxValue);
+
+	UFUNCTION(BlueprintCallable, Category = "Items")
+	void GainCredits(int32 Value);
+	UFUNCTION(BlueprintCallable, Category = "Items")
+	bool SpendCredits(int32 Value);
+
+	virtual bool UseMana_Implementation(float Amount) override;
+	virtual float GetCurrentMana_Implementation() override;
+	virtual bool HasEnoughMana_Implementation(float Amount) override;
 };
