@@ -124,3 +124,43 @@ bool AESCharacter::UseMana_Implementation(float Amount)
 	return false;
 }
 
+
+void AESCharacter::PrimaryAttack()
+{
+	ActionComp->StartActionByName(this, PrimaryAttackName);
+}
+
+void AESCharacter::SecondaryAttack()
+{
+	ActionComp->StartActionByName(this, SecondaryAttackName);
+}
+
+void AESCharacter::SkillOne()
+{
+	ActionComp->StartActionByName(this, SkillOneName);
+}
+
+void AESCharacter::SkillTwo()
+{
+	ActionComp->StartActionByName(this, SkillTwoName);
+}
+
+void AESCharacter::SkillThree()
+{
+	ActionComp->StartActionByName(this, SkillThreeName);
+}
+
+void AESCharacter::SkillFour()
+{
+	ActionComp->StartActionByName(this, SkillFourName);
+}
+
+void AESCharacter::SprintStart()
+{
+	ActionComp->StartActionByName(this, "Sprint");
+}
+
+void AESCharacter::SprintStop()
+{
+	ActionComp->StopActionByName(this, "Sprint");
+}

@@ -83,4 +83,24 @@ public:
 	virtual bool UseMana_Implementation(float Amount) override;
 	virtual float GetCurrentMana_Implementation() override;
 	virtual bool HasEnoughMana_Implementation(float Amount) override;
+
+	/// <summary>
+	/// Character CroAction methods
+	/// </summary>
+	UFUNCTION()
+	void PrimaryAttack();
+	UFUNCTION()
+	void SecondaryAttack();
+	UFUNCTION()
+	void SkillOne();
+	UFUNCTION()
+	void SkillTwo();
+	UFUNCTION()
+	void SkillThree();
+	UFUNCTION()
+	void SkillFour();
+	UFUNCTION()
+	void SprintStart();
+	UFUNCTION()
+	void SprintStop();
 };
