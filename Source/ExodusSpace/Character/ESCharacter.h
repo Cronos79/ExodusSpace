@@ -37,6 +37,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Items")
 	int32 Credits{ 0 };
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Respawn")
+	FVector RespawnLoc;
+
 public:
 	UPROPERTY(BlueprintAssignable, Category = "Attributes")
 	FOnCreditsChanged OnCreditsChanged;
@@ -69,6 +72,12 @@ public:
 
 	void PossessedBy(AController* NewController) override;
 
+protected:
+	UFUNCTION()
+	virtual void KillCharacter();
+	UFUNCTION()
+	virtual void RespawnCharacter();
+
 public:
 	UFUNCTION()
 	void OnHealthChange(AActor* InstigatorActor, UCroAttributeComponent* OwningComp, float NewHealth, float MaxHealth, float ChangedAmount);
@@ -83,6 +92,8 @@ public:
 	virtual bool UseMana_Implementation(float Amount) override;
 	virtual float GetCurrentMana_Implementation() override;
 	virtual bool HasEnoughMana_Implementation(float Amount) override;
+	UFUNCTION()
+	void SetRespawnLoc(FVector Loc);
 
 	/// <summary>
 	/// Character CroAction methods

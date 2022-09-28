@@ -39,6 +39,7 @@ void AESCharacter::BeginPlay()
 	{
 		AttributeComp->OnHealthChanged.AddDynamic(this, &AESCharacter::OnHealthChange);
 	}	
+	SetRespawnLoc(GetActorLocation()); // #TODO: Temp to set respawn... Set this to a bed or start loc
 }
 
 // Called every frame
@@ -59,6 +60,23 @@ void AESCharacter::PossessedBy(AController* NewController)
 	}
 }
 
+void AESCharacter::KillCharacter()
+{
+	GetMesh()->SetVisibility(false, true);
+	RespawnCharacter(); // #TODO: Lots of work to do respawning... and make it server side
+}
+
+void AESCharacter::RespawnCharacter()
+{
+	TeleportTo(RespawnLoc, FRotator());
+	if (AttributeComp)
+	{
+		AttributeComp->Heal(AttributeComp->GetMaxHealth(), this, true);
+		AttributeComp->GainMana(AttributeComp->GetMaxMana()); // #TODO: Clear debuffs and buffs
+	}
+	GetMesh()->SetVisibility(true, true);
+}
+
 void AESCharacter::OnHealthChange(AActor* InstigatorActor, UCroAttributeComponent* OwningComp, float NewHealth, float MaxHealth, float ChangedAmount)
 {
 	UpdateHealthBar(NewHealth, MaxHealth);
@@ -67,6 +85,13 @@ void AESCharacter::OnHealthChange(AActor* InstigatorActor, UCroAttributeComponen
 	if (CT)
 	{
 		CT->PlayCombatText(ChangedAmount);
+	}
+
+
+	if (NewHealth <= 0.0f)
+	{
+		// TODO: Kill player on 0 health and teleport to spawn point	
+		KillCharacter();
 	}
 }
 
@@ -124,6 +149,11 @@ bool AESCharacter::UseMana_Implementation(float Amount)
 	return false;
 }
 
+
+void AESCharacter::SetRespawnLoc(FVector Loc)
+{
+	RespawnLoc = Loc;
+}
 
 void AESCharacter::PrimaryAttack()
 {
