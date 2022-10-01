@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include <Delegates/DelegateCombinations.h>
 #include <CroActionInterface.h>
+#include "Player/ESPlayerController.h"
 #include "ESCharacter.generated.h"
 
 class UCroAttributeComponent;
@@ -41,6 +42,9 @@ protected:
 	FVector RespawnLoc;
 
 public:
+	UPROPERTY(Replicated, BlueprintReadWrite, Category = "PlayerController")
+	AESPlayerController* MyPlayerController;
+
 	UPROPERTY(BlueprintAssignable, Category = "Attributes")
 	FOnCreditsChanged OnCreditsChanged;
 
@@ -71,7 +75,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void PossessedBy(AController* NewController) override;
-
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 protected:
 	UFUNCTION()
 	virtual void KillCharacter();

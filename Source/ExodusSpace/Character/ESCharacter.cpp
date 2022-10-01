@@ -8,6 +8,7 @@
 #include "../UI/SimpleHealthBar.h"
 #include "Kismet/GameplayStatics.h"
 #include "../UI/SimpleCombatText.h"
+#include <Net/UnrealNetwork.h>
 
 // Sets default values
 AESCharacter::AESCharacter()
@@ -52,12 +53,27 @@ void AESCharacter::Tick(float DeltaTime)
 void AESCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-	AController* PC = UGameplayStatics::GetPlayerController(this, 0);
-	if (NewController == PC && HealthBar)
+	if (MyPlayerController && NewController != MyPlayerController && HealthBar)
+	{
+		HealthBar->SetVisibility(true, true);
+		//CombatText->SetVisibility(false, true);
+	}
+	else
 	{
 		HealthBar->SetVisibility(false, true);
 		//CombatText->SetVisibility(false, true);
 	}
+	if (GEngine)
+	{
+		FString Msg = FString::Printf(TEXT("NewController [%s] MyController [%s] MyChar [%s]"), *GetNameSafe(NewController), *GetNameSafe(MyPlayerController), *GetNameSafe(this));
+		GEngine->AddOnScreenDebugMessage(-1, 45.0f, FColor::Red, Msg);
+	}
+}
+
+void AESCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(AESCharacter, MyPlayerController);
 }
 
 void AESCharacter::KillCharacter()

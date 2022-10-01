@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "../ESCharacter.h"
+#include "ESPlayerController.h"
 #include "ESPlayerCharacter.generated.h"
 
 class USpringArmComponent;
@@ -28,6 +29,8 @@ protected:
 	UCameraComponent* CameraComp;
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UESInteractionComponent* InteractionComp;
+
+
 
 public:
 	AESPlayerCharacter();

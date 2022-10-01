@@ -13,9 +13,9 @@ public class ExodusSpace : ModuleRules
         PublicDependencyModuleNames.AddRange(new string[] { "AIModule", "GameplayTasks" });
         // UI
         PublicDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore" });
-        // Testing
-        //PublicDependencyModuleNames.AddRange(new string[] { "UnrealEd" });
-		// For steam
-		PrivateDependencyModuleNames.Add("OnlineSubsystem");
+        // Web
+        PublicDependencyModuleNames.AddRange(new string[] { "HTTP", "Json", "JsonUtilities" });
+        // For steam
+        PrivateDependencyModuleNames.Add("OnlineSubsystem");
 	}
 }

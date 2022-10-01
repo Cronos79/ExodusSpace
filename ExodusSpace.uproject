@@ -12,7 +12,8 @@
 				"Engine",
 				"AIModule",
 				"CroAction",
-				"UMG"
+				"UMG",
+				"CoreUObject"
 			]
 		}
 	],
@@ -30,6 +31,10 @@
 		},
 		{
 			"Name": "FunctionalTestingEditor",
+			"Enabled": true
+		},
+		{
+			"Name": "JsonBlueprintUtilities",
 			"Enabled": true
 		}
 	],
