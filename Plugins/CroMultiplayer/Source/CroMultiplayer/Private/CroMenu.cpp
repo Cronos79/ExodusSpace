@@ -138,10 +138,10 @@ void UCroMenu::OnJoinSession(EOnJoinSessionCompleteResult::Type Result)
 		{
 			FString Address;
 			SessionInterface->GetResolvedConnectString(NAME_GameSession, Address);
-			if (GEngine)
+		/*	if (GEngine)
 			{
 				GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Cyan, FString(TEXT("SessionInterface Success")));
-			}
+			}*/
 			APlayerController* PC = GetGameInstance()->GetFirstLocalPlayerController();
 			if (PC)
 			{
